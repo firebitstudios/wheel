@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1580476870,
+	"version": 1580811201,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -11,12 +11,6 @@
 		"images/к2-sheet0.png",
 		"images/pointer-sheet0.png",
 		"images/prize_screen-sheet0.png",
-		"images/get_prize_btn-sheet0.png",
-		"icon-16.png",
-		"icon-32.png",
-		"icon-114.png",
-		"icon-128.png",
-		"icon-256.png",
-		"loading-logo.png"
+		"images/get_prize_btn-sheet0.png"
 	]
 }
