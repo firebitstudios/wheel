@@ -19545,10 +19545,13 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.Text,
 	cr.plugins_.Touch,
 	cr.behaviors.Rotate,
+	cr.system_object.prototype.cnds.OnLayoutStart,
+	cr.plugins_.LocalStorage.prototype.acts.CheckItemExists,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemExists,
-	cr.system_object.prototype.cnds.TriggerOnce,
 	cr.plugins_.Sprite.prototype.acts.SetOpacity,
 	cr.system_object.prototype.acts.SetGroupActive,
+	cr.plugins_.Text.prototype.acts.SetFontColor,
+	cr.system_object.prototype.exps.rgb,
 	cr.system_object.prototype.cnds.IsGroupActive,
 	cr.plugins_.Touch.prototype.cnds.OnTapGestureObject,
 	cr.system_object.prototype.cnds.CompareVar,
@@ -19558,6 +19561,7 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Rotate.prototype.acts.SetAcceleration,
 	cr.system_object.prototype.cnds.Compare,
 	cr.behaviors.Rotate.prototype.exps.Speed,
-	cr.plugins_.Browser.prototype.acts.GoToURL,
-	cr.plugins_.LocalStorage.prototype.acts.SetItem
+	cr.plugins_.LocalStorage.prototype.acts.SetItem,
+	cr.plugins_.Browser.prototype.acts.ExecJs,
+	cr.plugins_.Browser.prototype.acts.GoToURL
 ];};
