@@ -10,12 +10,6 @@ VK.init(function() {
      // Can reload page here
 }, '5.103');
 
-VK.api("wall.post", {"message": "Hello!", "v":"5.73"}, function (data) {
-
-    alert("Post ID:" + data.response.post_id); 
-
-});
-
 if (typeof Object.getPrototypeOf !== "function")
 {
 	if (typeof "test".__proto__ === "object")
@@ -7083,6 +7077,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 				{
 					try {
 						localStorage.setItem("__c2save_" + savingToSlot, savingJson);
+						VK.api("storage.set", {"key": "__c2save_"+savingToSlot, "value": savingJson, "user_id": VK.id});
 						cr.logexport("Saved state to WebStorage (" + savingJson.length + " bytes)");
 						self.lastSaveJson = savingJson;
 						self.trigger(cr.system_object.prototype.cnds.OnSaveComplete, null);
@@ -7101,6 +7096,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			{
 				try {
 					localStorage.setItem("__c2save_" + savingToSlot, savingJson);
+					VK.api("storage.set", {"key": "__c2save_"+savingToSlot, "value": savingJson, "user_id": VK.id});
 					cr.logexport("Saved state to WebStorage (" + savingJson.length + " bytes)");
 					self.lastSaveJson = savingJson;
 					this.trigger(cr.system_object.prototype.cnds.OnSaveComplete, null);
@@ -7132,6 +7128,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 					else
 					{
 						self.loadFromJson = localStorage.getItem("__c2save_" + loadingFromSlot) || "";
+						self.loadFromJson = VK.api("storage.get", {"key": "__c2save_"+loadingFromSlot, "user_id": VK.id});
 						cr.logexport("Loaded state from WebStorage (" + self.loadFromJson.length + " bytes)");
 					}
 					self.suspendDrawing = false;
@@ -7143,6 +7140,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 				}, function (e)
 				{
 					self.loadFromJson = localStorage.getItem("__c2save_" + loadingFromSlot) || "";
+					self.loadFromJson = VK.api("storage.get", {"key": "__c2save_"+loadingFromSlot, "user_id": VK.id});
 					cr.logexport("Loaded state from WebStorage (" + self.loadFromJson.length + " bytes)");
 					self.suspendDrawing = false;
 					if (!self.loadFromJson)
@@ -7156,6 +7154,7 @@ quat4.str=function(a){return"["+a[0]+", "+a[1]+", "+a[2]+", "+a[3]+"]"};
 			{
 				try {
 					this.loadFromJson = localStorage.getItem("__c2save_" + loadingFromSlot) || "";
+					this.loadFromJson = VK.api("storage.get", {"key": "__c2save_"+loadingFromSlot, "user_id": VK.id});
 					cr.logexport("Loaded state from WebStorage (" + this.loadFromJson.length + " bytes)");
 				}
 				catch (e)
