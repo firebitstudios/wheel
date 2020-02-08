@@ -11,7 +11,7 @@ function authInfo(response) {
   }
 }
 
-var VKID = VK.user_id;
+var VKID = user_id;
 
 if (typeof Object.getPrototypeOf !== "function")
 {
