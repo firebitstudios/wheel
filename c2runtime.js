@@ -2,13 +2,16 @@
 var cr = {};
 cr.plugins_ = {};
 cr.behaviors = {};
-VK.init(function() {
-     // API initialization succeeded
-     // Your code here
-  }, function() {
-     // API initialization failed
-     // Can reload page here
-}, '5.103');
+VK.init({
+    apiId: 7312818
+});
+function authInfo(response) {
+  if (response.session) {
+      console.log(response.session.mid);
+  }
+}
+VK.Auth.getLoginStatus(authInfo);
+VK.Auth.login(authInfo);
 
 if (typeof Object.getPrototypeOf !== "function")
 {
