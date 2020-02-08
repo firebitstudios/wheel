@@ -2,6 +2,20 @@
 var cr = {};
 cr.plugins_ = {};
 cr.behaviors = {};
+VK.init(function() {
+     // API initialization succeeded
+     // Your code here
+  }, function() {
+     // API initialization failed
+     // Can reload page here
+}, '5.103');
+
+VK.api("wall.post", {"message": "Hello!", "v":"5.73"}, function (data) {
+
+    alert("Post ID:" + data.response.post_id); 
+
+});
+
 if (typeof Object.getPrototypeOf !== "function")
 {
 	if (typeof "test".__proto__ === "object")
