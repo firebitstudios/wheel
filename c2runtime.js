@@ -20855,5 +20855,5 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Rotate.prototype.exps.Speed,
 	cr.plugins_.Sprite.prototype.acts.SetAnim,
 	cr.plugins_.LocalStorage.prototype.acts.SetItem,
-	cr.plugins_.Browser.prototype.acts.GoToURL
+	cr.plugins_.Browser.prototype.acts.ExecJs
 ];};
