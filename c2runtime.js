@@ -2,16 +2,19 @@
 var cr = {};
 cr.plugins_ = {};
 cr.behaviors = {};
-VK.init({
-    apiId: 7312818
-});
-function authInfo(response) {
-  if (response.session) {
-      console.log(response.session.mid);
-  }
-}
 
-var VKID = user_id;
+  VK.init(function() {
+     // API initialization succeeded
+     // Your code here
+  }, function() {
+     // API initialization failed
+     // Can reload page here
+}, '5.103');
+
+VK.api("users.get", {"fields": "id", "v":"5.73"}, function (data) {
+    VKID = data.response[0].id;
+    console.log(VKID);
+});
 
 if (typeof Object.getPrototypeOf !== "function")
 {
