@@ -2,6 +2,20 @@
 var cr = {};
 cr.plugins_ = {};
 cr.behaviors = {};
+var VKID = 0;
+function INIT_VK(){
+	VK.init(function() {
+	     console.log("SUCCEFULLY_GOT_ID");
+	     // Your code here
+	  }, function() {
+	     // API initialization failed
+	     // Can reload page here
+	}, '5.103');
+	VK.api("users.get", {"fields": "photo_50,first_name,last_name", "v":"5.73"}, function (data){
+	console.log(data.response[0].id);
+	VKID = data.response[0].id;
+	console.log(VKID);
+};
 if (typeof Object.getPrototypeOf !== "function")
 {
 	if (typeof "test".__proto__ === "object")
@@ -18824,6 +18838,1224 @@ cr.plugins_.Touch = function(runtime)
 	};
 	pluginProto.exps = new Exps();
 }());
+if( window === undefined )
+{
+	var window = ("undefined" == typeof window) ?
+					("undefined" == typeof global) ?
+						("undefined" == typeof self) ?
+						this
+						:self
+					:global
+				:window;
+}
+var __CONSTRUCT2_RUNTIME2__ = true;
+var __CONSTRUCT3_RUNTIME2__ = false;
+var __CONSTRUCT3_RUNTIME3__ = false;
+var __DEBUG__ = false;
+;
+;
+cr.plugins_.ValerypopoffJSPlugin = function(runtime)
+{
+	this.runtime = runtime;
+};
+(function ()
+{
+	var pluginProto = cr.plugins_.ValerypopoffJSPlugin.prototype;
+	pluginProto.Type = function(plugin)
+	{
+		this.plugin = plugin;
+		this.runtime = plugin.runtime;
+	};
+	var typeProto = pluginProto.Type.prototype;
+	typeProto.onCreate = function()
+	{
+	};
+	pluginProto.Instance = function(type)
+	{
+		this.type = type;
+		this.runtime = type.runtime;
+	};
+	var instanceProto = pluginProto.Instance.prototype;
+	instanceProto.onCreate = function()
+	{
+				this.returnValue = undefined;
+		this.sciptsToLoad = 0;
+		this.Aliases = {};
+		this.construct_compare_function_prefix = "ConstructCompare_";
+		this.AliasDotpartsCache =
+		{
+			count: 0,
+			max_count: 4096,
+			Dotparts: {},
+			AliasNames: {},
+			AliasTrailers: {},
+			IsAlias: {}
+		};
+		this.NonAliasDotpartsCache =
+		{
+			count: 0,
+			max_count: 2048,
+			Dotparts: {}
+		};
+		function AddScriptToPage(this_, nameOfExternalScript)
+		{
+			if( document === undefined )
+			{
+				this_.ShowError(
+				{
+					debug_caller: "Including '"+ nameOfExternalScript +"' script to the page",
+					caller_name: "Including '"+ nameOfExternalScript +"' script to the page",
+					error_message: "'document' is not defined. You're probably launching the game in a Worker. Workers are not supported yet. Export project with 'Use worker' option unchecked in the 'Advanced' section of the 'Project properties' panel."
+				});
+				return;
+			}
+			/*
+			if( window.jQuery && window.jQuery.ajax )
+			{
+ 				$.ajax(
+ 				{
+					url: nameOfExternalScript,
+					dataType: "script",
+					async: false,
+					success: function()
+					{
+						this_.sciptsToLoad-- ;
+					},
+					error: function(XMLHttpRequest)
+					{
+						this_.ShowError(
+						{
+							debug_caller: "Including '"+ nameOfExternalScript +"' script to the page",
+							caller_name: "Including '"+ nameOfExternalScript +"' script to the page",
+							error_message: XMLHttpRequest.status
+						});
+					}
+				});
+		    } else  */
+		    {
+				var myScriptTag = document.createElement('script');
+				myScriptTag.setAttribute("type","text/javascript");
+				myScriptTag.setAttribute("src", nameOfExternalScript);
+				myScriptTag.onreadystatechange = function ()
+				{
+  					if (this.readyState == 'complete')
+  					this_.sciptsToLoad--;
+				}
+				myScriptTag.onload = function(){ this_.sciptsToLoad--; };
+				myScriptTag.onerror = function()
+				{
+					this_.ShowError(
+					{
+						debug_caller: "Including '"+ nameOfExternalScript +"' script to the page",
+						caller_name: "Including '"+ nameOfExternalScript +"' script to the page",
+						error_message: "Probably file not found"
+					});
+				};
+				document.getElementsByTagName("head")[0].appendChild(myScriptTag);
+		    }
+		}
+		if( this.properties[0] != "" )
+		{
+			var lines = [];
+			if( __CONSTRUCT2_RUNTIME2__ )
+				lines = this.properties[0].split(';');
+			else
+				lines = this.properties[0].split(/[;\n\r]/);
+			for(var i=0; i<lines.length; i++)
+			{
+				lines[i] = lines[i].trim();
+				if( lines[i].length == 0 )
+				{
+				   continue;
+				}
+				this.sciptsToLoad++;
+				if( __CONSTRUCT2_RUNTIME2__ )
+				{
+					AddScriptToPage(this, lines[i]);
+				}
+				if( __CONSTRUCT3_RUNTIME2__ )
+				{
+					AddScriptToPage(this, this.runtime.getLocalFileUrl( lines[i] ) );
+				}
+				if( __CONSTRUCT3_RUNTIME3__ )
+				{
+					var this_ = this;
+					if( this_._runtime.GetAssetManager().LoadProjectFileUrl !== undefined )
+					{
+						this_._runtime.GetAssetManager().LoadProjectFileUrl( lines[i] )
+						.then(function(url)
+						{
+							AddScriptToPage(this_, url)
+						}, function(err)
+						{
+							this_.ShowError(
+							{
+								debug_caller: "Including '"+ lines[i] +"' script to the page",
+								caller_name: "Including '"+ lines[i] +"' script to the page",
+								error_message: err.message
+							});
+						}).catch(function(err)
+						{
+							this_.ShowError(
+							{
+								debug_caller: "Including '"+ lines[i] +"' script to the page",
+								caller_name: "Including '"+ lines[i] +"' script to the page",
+								error_message: err.message
+							});
+						})
+					}
+					else
+					{
+						AddScriptToPage(this_, this_._runtime.GetAssetManager().GetLocalFileUrl( lines[i] ));
+					}
+				}
+			}
+		}
+	};
+	instanceProto.draw = function(ctx)
+	{
+	};
+	instanceProto.drawGL = function (glw)
+	{
+	};
+		var IsValidIdentifier = function(name_)
+	{
+		var fnNameRegex = /^[$A-Z_][0-9A-Z_$]*$/i;
+		return fnNameRegex.test( name_ );
+	}
+	var DotStringToDotArray = function( str_ )
+	{
+		var SplitArray = [];
+		var left = 0;
+		var right = 0;
+		for( var i=0, str_length=str_.length; i<str_length; i++ )
+		{
+			if( str_[i] == '[' )
+			{
+				left++;
+				continue;
+			}
+			if( str_[i] == ']' )
+			{
+				right++;
+				continue;
+			}
+			if( str_[i] == '.' && (left == right) )
+			{
+				SplitArray.push(i);
+			}
+		}
+		var Dotparts = [];
+		var splitArrayLengthMinusOne = SplitArray.length-1;
+		SplitArray.forEach( function(currentValue, index, arr)
+		{
+			var prevValue = SplitArray[index-1];
+			var substr = str_.substring( prevValue+1, currentValue );
+			if( substr != "" ) Dotparts.push( substr );
+			if( index == splitArrayLengthMinusOne )
+			{
+				substr = str_.substring( currentValue+1 );
+				if( substr != "" ) Dotparts.push( substr );
+			}
+		});
+		if( Dotparts.length == 0 )
+		{
+			Dotparts.push( str_ )
+		}
+		Dotparts.forEach( function(currentValue, index, arr)
+		{
+			if( currentValue[0] == '[' )
+			arr[index] = DotStringToDotArray( currentValue.substring(1, currentValue.length-1) ) ;
+		});
+		return Dotparts;
+	}
+	var HashtagParamsToCode = function(code_, params_)
+	{
+		code_ = code_.replace( /#[0-9]+/g, function(str)
+												{
+													var temp = params_[ str.substr(1) ];
+													if (typeof temp === "string")
+													return "'" + temp + "'";
+													else
+													return temp;
+												}
+									);
+		return code_;
+	}
+	var MakeCallString = function (funcname_,funcparams_)
+	{
+ 		var callstring = funcname_ + "(";
+ 		if (funcparams_)
+		for (var i=0, funcparams_length=funcparams_.length; i<funcparams_length; ++i)
+		{
+			if (typeof funcparams_[i] === "string")
+			callstring = callstring + "'" + funcparams_[i] + "'";
+			else
+			callstring = callstring + funcparams_[i];
+			if( i != funcparams_.length-1 )
+			callstring = callstring + ",";
+		}
+		callstring = callstring + ")";
+		return callstring;
+	}
+	var InstanceFunctionsObject = {
+	Value( caller_name_, params_ )
+    {
+	    /*
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+		*/
+		var alias_exp_ = params_[0];
+		params_.splice(0, 1);
+		var store_return_value_ = false;
+        var final = this.ParseJS(alias_exp_, true, caller_name_);
+        /*
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "Value",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + final.trimmed_code + "'"
+            }
+            this.ShowError( info );
+            ret.set_any( undefined );
+            return;
+        }*/
+        if( final.error )
+        {
+            ret.set_any( undefined );
+            return;
+        }
+        var jsret = undefined;
+        try
+        {
+            jsret = final.end;
+        } catch(err)
+        {
+            var info =
+            {
+                debug_caller: "Value",
+                caller_name: caller_name_,
+                "show-alias-expression": final.alias_found,
+                alias_expression: final.trimmed_code,
+                error_message: err.message
+            }
+            this.ShowError( info );
+            ret.set_any( undefined );
+            return;
+        }
+		if( typeof final.end == "function" )
+	        jsret = this.CallJSfunction(alias_exp_, params_, store_return_value_, caller_name_, final );
+        return jsret;
+    },
+	CallJSfunction: function(funcname_, funcparams_, store_return_value_, caller_name_, final_)
+    {
+        if( store_return_value_ === undefined )
+        store_return_value_ = true;
+        if( caller_name_ === undefined )
+        caller_name_ = "'Call function' action";
+        if( final_ === undefined )
+        var final = this.ParseJS( funcname_, true, caller_name_ );
+        else
+        var final = final_;
+        if( final.error )
+        {
+            return;
+        }
+        if( funcname_.indexOf("(") >= 0 || funcname_.indexOf(")") >= 0 )
+        {
+            var info =
+            {
+                debug_caller: "CallJSfunction",
+                caller_name: caller_name_,
+                error_message: "'" + final.trimmed_code + "' must be a function name, not a function call. Remove parentheses."
+            }
+            if( final.alias_found )
+            {
+                info["show-alias-expression"] = true;
+                info.alias_expression = final.trimmed_code;
+            }
+            this.ShowError( info );
+            return;
+        }
+        var ret = undefined;
+        try
+        {
+            ret = final.end.apply(final.context, funcparams_);
+        } catch(err)
+        {
+            if (err instanceof TypeError && err.message.indexOf("apply") >= 0 && err.message.indexOf("undefined") >= 0 )
+            err.message = funcname_ + " is undefined";
+            var info =
+            {
+                debug_caller: "CallJSfunction",
+                caller_name: caller_name_,
+                error_message: err.message
+            }
+            if( final.alias_found )
+            {
+                info["show-alias-expression"] = true;
+                info.alias_expression = MakeCallString(final.trimmed_code, funcparams_);
+                info["show-code"] = true,
+                info.code = MakeCallString(this.Aliases[final.alias_name].js + final.alias_trailer, funcparams_);
+            }
+            else
+            {
+                info["show-code"] = true,
+                info.code = MakeCallString(final.trimmed_code, funcparams_);
+            }
+            this.ShowError( info );
+            return;
+        }
+        if( store_return_value_ )
+        this.returnValue = ret;
+        return ret;
+    },
+	CallAlias: function(alias_exp_, funcparams_, store_return_value_, caller_name_)
+    {
+        if( store_return_value_ === undefined )
+        store_return_value_ = true;
+        if( caller_name_ === undefined )
+        caller_name_ = "'Call alias' action";
+        var final = this.ParseJS(alias_exp_, true, caller_name_);
+        /*
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "CallAlias",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + final.trimmed_code + "'"
+            }
+            this.ShowError( info );
+            return;
+        }
+        */
+        if( final.error )
+        return;
+        var ret = this.CallJSfunction(this.Aliases[final.alias_name].js + final.alias_trailer, funcparams_, store_return_value_, caller_name_, final );
+        return ret;
+    },
+	ShowError: function( info )
+	{
+		var error_str = "ValerypopoffJS plugin: Error in " + info.caller_name + "\n";
+		error_str += "--------------------- \n";
+		if( __DEBUG__ )
+		{
+			error_str += "DEBUG CALLER: " + info.debug_caller + "\n";
+			error_str += "--------------------- \n";
+		}
+		if( info["show-alias-expression"] )
+		{
+			error_str += "Alias expression: " + info.alias_expression + "\n";
+			error_str += "--------------------- \n";
+		}
+		if( info["show-code"] )
+		{
+			error_str += "JS code: " + info.code + "\n";
+			error_str += "--------------------- \n";
+		}
+		error_str += info.error_message;
+		console.error( error_str );
+	},
+	Resolve: function( dotparts_, caller_name_, code_, alias_name_, alias_trailer_ )
+	{
+		var context = window;
+		var end = context;
+		var endname = "";
+		for( var i=0, dotparts_length=dotparts_.length; i<dotparts_length; i++ )
+		{
+			endname = dotparts_[i];
+			if( typeof(endname) == "object" )
+			{
+				var temp = this.Resolve( endname, caller_name_, code_, alias_name_, alias_trailer_ );
+				if( temp.error ) return {error: true}
+				endname = temp.end;
+				try
+				{
+					end = end[endname];
+				}
+				catch(err)
+				{
+				 	var info =
+				 	{
+				 		debug_caller: "Resolve",
+				 		caller_name: caller_name_,
+				 		error_message: err.message,
+				 		"show-code": true,
+				 		code: code_
+				 	}
+				 	if( alias_name_ )
+				 	{
+				 		info["show-alias-expression"] = true;
+				 		info.code = this.Aliases[alias_name_].js + alias_trailer_;
+				 		info.alias_expression = code_;
+				 	}
+				 	this.ShowError( info );
+					return {error: true}
+				}
+			} else
+			{
+				try
+				{
+					if(context == window)
+					{
+						if( !IsValidIdentifier(endname) )
+						{
+							if( endname[0] == '\'' )
+							endname = endname.substring(1, endname.length-1);
+							end = endname;
+						}
+						else
+						{
+							end = end[endname];
+						}
+					}
+					else
+					{
+						end = end[endname];
+					}
+				}
+				catch(err)
+				{
+				 	var info =
+				 	{
+				 		debug_caller: "Resolve",
+				 		caller_name: caller_name_,
+				 		error_message: err.message,
+				 		"show-code": true,
+				 		code: code_
+				 	}
+				 	if( alias_name_ )
+				 	{
+				 		info["show-alias-expression"] = true;
+				 		info.code = this.Aliases[alias_name_].js + alias_trailer_;
+				 		info.alias_expression = code_;
+				 	}
+				 	this.ShowError( info );
+					return {error: true}
+				}
+			}
+			if( i<dotparts_length-1 )
+			context = end;
+		}
+		return { error: false, context: context, end: end, endname: endname };
+	},
+	ParseJS: function(code_, is_alias_, caller_name_)
+	{
+		var alias_found = false;
+		var alias_name = undefined;
+		var alias_trailer = undefined;
+		var Dotparts = [];
+		var cache = undefined;
+		var trimmed_code = code_.trim().replace(/\s*([\.\[\]])\s*/g, "$1");
+		cache = this.AliasDotpartsCache;
+		if( cache.Dotparts[ trimmed_code ] )
+		{
+			Dotparts = cache.Dotparts[ trimmed_code ];
+			if( cache.IsAlias[ trimmed_code ] )
+			{
+				alias_found = true;
+				alias_name = cache.AliasNames[ trimmed_code ];
+				alias_trailer = cache.AliasTrailers[ trimmed_code ];
+			}
+		}
+		else
+		{
+			{
+				alias_name = trimmed_code.split(/[\.\[]/)[0];
+				alias_trailer = trimmed_code.substring( alias_name.length );
+				if( this.Aliases[alias_name] )
+				{
+					alias_found = true;
+					if( alias_trailer )
+					Dotparts = DotStringToDotArray( this.Aliases[alias_name].dotstring + alias_trailer.split('[').join(".[") );
+					else
+					Dotparts = DotStringToDotArray( this.Aliases[alias_name].dotstring );
+				} else
+				{
+					alias_name = undefined;
+					alias_trailer = undefined;
+					Dotparts = DotStringToDotArray( trimmed_code.split('[').join(".[") );
+				}
+				/*
+				return {
+						error: 			true,
+						alias_found:	alias_found,
+						trimmed_code: 	trimmed_code,
+						alias_name: 	alias_name,
+						alias_trailer: 	alias_trailer
+						};
+				*/
+			}
+			/*
+			else
+			{
+				Dotparts = DotStringToDotArray( trimmed_code.split('[').join(".[") );
+			}
+			*/
+			if( cache.count >= cache.max_count )
+			for( var i in cache.Dotparts )
+			{
+				delete cache.Dotparts[i];
+				if( cache.IsAlias[ i ] )
+				{
+					delete cache.AliasNames[ i ];
+					delete cache.AliasTrailers[ i ];
+					delete cache.IsAlias[ i ];
+				}
+				cache.count--;
+				if(cache.count <= cache.max_count)
+				break;
+			}
+			cache.Dotparts[ trimmed_code ] = Dotparts;
+			if( alias_found )
+			{
+				cache.AliasNames[ trimmed_code ] = alias_name;
+				cache.AliasTrailers[ trimmed_code ] = alias_trailer;
+				cache.IsAlias[ trimmed_code ] = true;
+			}
+			cache.count++;
+		}
+		var Result = this.Resolve( Dotparts, caller_name_, trimmed_code, alias_name, alias_trailer );
+		return {
+					error: 			Result.error,
+					end: 			Result.end,
+					endname: 		Result.endname,
+					context: 		Result.context,
+					trimmed_code: 	trimmed_code,
+					alias_found: 	alias_found,
+					alias_name: 	alias_name,
+					alias_trailer: 	alias_trailer
+				};
+	}
+}
+	for( var k in InstanceFunctionsObject )
+	{
+		instanceProto[k] = InstanceFunctionsObject[k];
+	}
+	function Cnds() {};
+	var CndsObject =
+	{
+	C2CompareFunctionReturnValue: function(value_, cmp_, funcname_, funcparams_)
+    {
+        switch( cmp_ )
+        {
+            case 2: cmp_=4; break;
+            case 3: cmp_=5; break;
+            case 4: cmp_=2; break;
+            case 5: cmp_=3; break;
+        }
+        return this.CNDS.CompareFunctionReturnValue.call( this, funcname_, funcparams_, cmp_, value_ );
+    },
+	C2CompareAliasCallReturnValue: function(value_, cmp_, alias_exp_, funcparams_)
+    {
+        switch( cmp_ )
+        {
+            case 2: cmp_=4; break;
+            case 3: cmp_=5; break;
+            case 4: cmp_=2; break;
+            case 5: cmp_=3; break;
+        }
+        return this.CNDS.CompareAliasCallReturnValue.call( this, alias_exp_, funcparams_, cmp_, value_ );
+    },
+	C2CompareExecReturnWithParams: function(value_, cmp_, code_, params_)
+    {
+        switch( cmp_ )
+        {
+            case 2: cmp_=4; break;
+            case 3: cmp_=5; break;
+            case 4: cmp_=2; break;
+            case 5: cmp_=3; break;
+        }
+        return this.CNDS.CompareExecReturnWithParams.call( this, code_, params_, cmp_, value_ );
+    },
+	C2CompareValue: function(value_, cmp_, alias_exp_, funcparams_)
+    {
+        switch( cmp_ )
+        {
+            case 2: cmp_=4; break;
+            case 3: cmp_=5; break;
+            case 4: cmp_=2; break;
+            case 5: cmp_=3; break;
+        }
+        return this.CNDS.CompareValue.call(this, alias_exp_, funcparams_, cmp_, value_)
+    },
+	CompareExecReturnWithParams: function(code_, params_, cmp_, value_)
+    {
+        var ret = undefined;
+        var caller_name_ = "'Compare JS code Completion value' condition";
+        if( params_.length )
+        code_ = HashtagParamsToCode(code_, params_);
+        try
+        {
+            ret = eval(code_);
+        } catch(err)
+        {
+            var info =
+            {
+                debug_caller: "CompareExecReturnWithParams",
+                caller_name: caller_name_,
+                error_message: err.message,
+                "show-code": true,
+                code: code_
+            }
+            this.ShowError( info );
+            return;
+        }
+        if( typeof ret === "boolean" )
+        ret = ret ? 1 : 0;
+        return cr.do_cmp(ret, cmp_, value_);
+    },
+	CompareFunctionReturnValue: function(funcname_, funcparams_, cmp_, value_)
+    {
+        var store_return_value_ = false;
+        var ret = undefined;
+        ret = this.CallJSfunction(funcname_, funcparams_, store_return_value_, "'Compare Function return value' condition" );
+        if( typeof ret === "boolean" )
+        ret = ret ? 1 : 0;
+        return cr.do_cmp(ret, cmp_, value_);
+    },
+	CompareStoredReturnValue: function(cmp_, value_)
+    {
+        var ret = this.returnValue;
+        if( typeof ret === "boolean" )
+        ret = ret ? 1 : 0;
+        return cr.do_cmp(ret, cmp_, value_);
+    },
+	AllScriptsLoaded: function()
+    {
+        return ( this.sciptsToLoad <= 0 ) ? true : false;
+    },
+	CompareValue: function(alias_exp_, funcparams_, cmp_, value_)
+    {
+        var ret = undefined;
+		var caller_name = "'Compare Value' condition";
+    	ret = this.Value( caller_name, [].concat(alias_exp_, funcparams_) );
+        if( typeof ret === "boolean" )
+        ret = ret ? 1 : 0;
+        return cr.do_cmp(ret, cmp_, value_);
+    },
+	CompareAliasValue: function(alias_exp_, cmp_, value_)
+    {
+        var caller_name_ = "'Compare alias' condition";
+        var store_return_value_ = false;
+        var final = this.ParseJS(alias_exp_, true, "'Set alias' action");
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "CompareAliasValue",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + alias_exp_ + "'"
+            }
+            this.ShowError( info );
+            return;
+        }
+        if( final.error )
+        {
+            return;
+        }
+        var custom_method = final.context[ this.construct_compare_function_prefix + final.endname ];
+        if( custom_method && typeof(final.context) == "object" )
+        {
+            try
+            {
+                return custom_method.call( final.context, cmp_, value_ );
+            } catch(err)
+            {
+                var info =
+                {
+                    debug_caller: "CompareAliasValue",
+                    caller_name: caller_name_,
+                    "show-alias-expression": true,
+                    alias_expression: final.trimmed_code,
+                    error_message: "Error in user defined '" + this.construct_compare_function_prefix + final.endname + "' function: " + err.message
+                }
+                this.ShowError( info );
+                return;
+            }
+        } else
+        {
+            var ret = final.end;
+            if( typeof ret === "boolean" )
+            ret = ret ? 1 : 0;
+            return cr.do_cmp(ret, cmp_, value_);
+        }
+    },
+	CompareAliasCallReturnValue: function(alias_exp_, funcparams_, cmp_, value_)
+    {
+        var store_return_value_ = false;
+        var ret = undefined;
+        ret = this.CallAlias(alias_exp_, funcparams_, store_return_value_, "'Compare Alias Call return value' condition" );
+        if( typeof ret === "boolean" )
+        ret = ret ? 1 : 0;
+        return cr.do_cmp(ret, cmp_, value_);
+    }
+	};
+	for( var k in CndsObject )
+	{
+		Cnds.prototype[k] = CndsObject[k];
+	}
+	pluginProto.cnds = new Cnds();
+	function Acts() {};
+	var ActsObject =
+	{
+	ExecuteJSWithParams: function(code, params_)
+    {
+        var caller_name_ = "'Execute JS code' action";
+        this.returnValue = undefined;
+        code = code.replace( /#[0-9]+/g, function(str)
+                                                {
+                                                    var temp = params_[ str.substr(1) ];
+                                                    if (typeof temp === "string")
+                                                    return "'" + temp + "'";
+                                                    else
+                                                    return temp;
+                                                }
+                                    );
+        try
+        {
+            this.returnValue = eval(code);
+        } catch(err)
+        {
+            this.ShowError(
+            {
+                debug_caller: "ExecuteJSWithParams",
+                caller_name: caller_name_,
+                "show-code": true,
+                code: code,
+                error_message: err.message
+            });
+            return;
+        }
+    },
+	CallJSfunction: function(funcname_, funcparams_, store_return_value_, caller_name_, final_)
+    {
+    	this.CallJSfunction(funcname_, funcparams_, store_return_value_, caller_name_, final_);
+    },
+	SetValue: function(alias_exp_, alias_value_)
+    {
+        var caller_name_ = "'Set value' action";
+        var final = this.ParseJS(alias_exp_, true, caller_name_);
+        /*
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "SetValue",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + final.trimmed_code + "'"
+            }
+            this.ShowError( info );
+            return;
+        } */
+        if( final.error )
+        return;
+        try
+        {
+            final.context[final.endname] = alias_value_;
+        } catch(err)
+        {
+            var code = alias_exp_ + "=";
+            if( typeof alias_value_ == "string" )
+            code = code + "'" + alias_value_ + "'";
+            else
+            code = code + alias_value_;
+            var info =
+            {
+                debug_caller: "SetValue",
+                caller_name: caller_name_,
+                "show-alias-expression": final.alias_found,
+                alias_expression: final.trimmed_code,
+                "show-code": true,
+                code: code,
+                error_message: err.message
+            }
+            this.ShowError( info );
+            return;
+        }
+    },
+	Call: function(alias_exp_, funcparams_, store_return_value_, caller_name_)
+    {
+		this.CallJSfunction(alias_exp_, funcparams_, true, "'Call' action" );
+    },
+	InitAlias: function(alias_name_, alias_js_)
+    {
+        var caller_name_ = "'Init alias' action";
+        alias_name_ = alias_name_.trim();
+        alias_js_ = alias_js_.trim();
+        if( alias_js_.length == 0 )
+        {
+            var info =
+            {
+                debug_caller: "InitAlias",
+                caller_name: caller_name_,
+                error_message: "Javascript string of alias '" + alias_name_ + "' must not be empty."
+            }
+            this.ShowError( info );
+            return;
+        }
+        if( alias_name_.indexOf(".") >= 0 || alias_name_.indexOf("[") >= 0 || alias_name_.indexOf("]") >= 0 )
+        {
+            var info =
+            {
+                debug_caller: "InitAlias",
+                caller_name: caller_name_,
+                error_message: "Alias name must not contain '.', '[' or ']' signs: '" + alias_name_ + "'"
+            }
+            this.ShowError( info );
+            return;
+        }
+        if( this.Aliases[alias_name_] != undefined )
+        {
+            var info =
+            {
+                debug_caller: "InitAlias",
+                caller_name: caller_name_,
+                error_message: "Alias '" + alias_name_ + "' already exists"
+            }
+            this.ShowError( info );
+            return;
+        }
+        var newAlias = new Object();
+        newAlias.js = alias_js_;
+        newAlias.dotstring = alias_js_.split('[').join(".[");
+        this.Aliases[alias_name_] = newAlias;
+    },
+	SetAlias: function(alias_exp_, alias_value_)
+    {
+        var caller_name_ = "'Set alias' action";
+        var final = this.ParseJS(alias_exp_, true, "'Set alias' action");
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "SetAlias",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + final.trimmed_code + "'"
+            }
+            this.ShowError( info );
+            return;
+        }
+        if( final.error )
+        return;
+        try
+        {
+            final.context[final.endname] = alias_value_;
+        } catch(err)
+        {
+            var code = alias_exp_ + "=";
+            if( typeof alias_value_ == "string" )
+            code = code + "'" + alias_value_ + "'";
+            else
+            code = code + alias_value_;
+            var info =
+            {
+                debug_caller: "SetAlias",
+                caller_name: caller_name_,
+                "show-alias-expression": true,
+                alias_expression: final.trimmed_code,
+                "show-code": true,
+                code: code,
+                error_message: err.message
+            }
+            this.ShowError( info );
+            return;
+        }
+    },
+	CallAlias: function(alias_exp_, funcparams_, store_return_value_, caller_name_)
+    {
+		this.CallAlias(alias_exp_, funcparams_, store_return_value_, caller_name_);
+    }
+	};
+	for( var k in ActsObject )
+	{
+		Acts.prototype[k] = ActsObject[k];
+	}
+	pluginProto.acts = new Acts();
+	function Exps() {};
+	var ExpsObject =
+	{
+	JSCodeValue: function()
+    {
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+    	var code_ = params_[0];
+    	var caller_name_ = "'JSCodeValue' expression";
+        var jscode = code_;
+        params_.splice(0, 1);
+        if( params_.length )
+        jscode = HashtagParamsToCode(jscode, params_);
+        var jsret = undefined;
+        try
+        {
+            jsret = eval(jscode);
+        } catch(err)
+        {
+            this.ShowError(
+            {
+                debug_caller: "JSCodeValue",
+                caller_name: caller_name_,
+                "show-code": true,
+                code: jscode,
+                error_message: err.message
+            });
+            ret.set_any( undefined );
+            return;
+        }
+        if( typeof jsret == "boolean" )
+        {
+        	ret.set_any( jsret ? 1 : 0 );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret ? 1 : 0;
+        }
+        else
+        {
+        	ret.set_any( jsret );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret;
+        }
+    },
+	StoredReturnValue: function()
+    {
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+        if( typeof this.returnValue === "boolean" )
+        {
+        	ret.set_any( this.returnValue ? 1 : 0 );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return this.returnValue ? 1 : 0;
+        }
+        else
+        {
+        	ret.set_any( this.returnValue );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return this.returnValue;
+        }
+    },
+	FunctionReturnValue: function()
+    {
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+		var func_exp_ = params_[0];
+        var caller_name_ = "'FunctionReturnValue' expression";
+        var store_return_value_ = false;
+        var final = this.ParseJS(func_exp_, false, caller_name_);
+        params_.splice(0, 1);
+        if( final.error )
+        {
+            ret.set_any( undefined );
+            return;
+        }
+        var jsret = undefined;
+        jsret = this.CallJSfunction(func_exp_, params_, store_return_value_, caller_name_, final );
+        if( typeof jsret === "boolean" )
+        {
+        	ret.set_any( jsret ? 1 : 0 );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret ? 1 : 0;
+        }
+        else
+        {
+        	ret.set_any( jsret );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret;
+        }
+        return;
+    },
+	Value: function()
+    {
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+		var caller_name = "'Value' expression";
+    	var jsret = this.Value( caller_name, params_ );
+        if( typeof jsret === "boolean" )
+        {
+        	ret.set_any( jsret ? 1 : 0 );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret ? 1 : 0;
+        }
+        else
+        {
+        	ret.set_any( jsret );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret;
+        }
+        return;
+    },
+	AliasValue: function()
+    {
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+		var alias_exp_ = params_[0];
+        var caller_name_ = "'AliasValue' expression";
+        var final = this.ParseJS(alias_exp_, true, caller_name_);
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "AliasValue",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + final.trimmed_code + "'"
+            }
+            this.ShowError( info );
+            ret.set_any( undefined );
+            return;
+        }
+        if( final.error )
+        {
+            ret.set_any( undefined );
+            return;
+        }
+        var jsret = undefined;
+        try
+        {
+            jsret = final.end;
+        } catch(err)
+        {
+            var info =
+            {
+                debug_caller: "AliasValue",
+                caller_name: caller_name_,
+                "show-alias-expression": true,
+                alias_expression: final.trimmed_code,
+                error_message: err.message
+            }
+            this.ShowError( info );
+            ret.set_any( undefined );
+            return;
+        }
+        if( typeof jsret === "boolean" )
+        {
+        	ret.set_any( jsret ? 1 : 0 );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret ? 1 : 0;
+        }
+        else
+        {
+        	ret.set_any( jsret );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret;
+        }
+        return;
+    },
+	AliasCallReturnValue: function()
+    {
+	    var params_ = Array.prototype.slice.call(arguments);
+	    var ret;
+	    if( __CONSTRUCT3_RUNTIME3__ )
+	    	ret = {set_int: function(){}, set_float: function(){}, set_string: function(){}, set_any: function(){}};
+		else
+		{
+			ret = params_[0];
+	        for( var i=0; i<params_.length-1; i++ )
+	        params_[i] = params_[i+1];
+	    	params_.pop();
+		}
+		var alias_exp_ = params_[0];
+        var caller_name_ = "'AliasCallValue' expression";
+        var store_return_value_ = false;
+        var final = this.ParseJS(alias_exp_, true, caller_name_);
+        params_.splice(0, 1);
+        if( !final.alias_found )
+        {
+            var info =
+            {
+                debug_caller: "AliasCallValue",
+                caller_name: caller_name_,
+                error_message: "No such alias '" + final.trimmed_code + "'"
+            }
+            this.ShowError( info );
+            ret.set_any( undefined );
+            return;
+        }
+        if( final.error )
+        {
+            ret.set_any( undefined );
+            return;
+        }
+        var jsret = undefined;
+        jsret = this.CallJSfunction(alias_exp_, params_, store_return_value_, caller_name_, final );
+        if( typeof jsret === "boolean" )
+        {
+        	ret.set_any( jsret ? 1 : 0 );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret ? 1 : 0;
+        }
+        else
+        {
+        	ret.set_any( jsret );
+        	if( __CONSTRUCT3_RUNTIME3__ )
+        	return jsret;
+        }
+        return;
+    }
+	};
+	for( var k in ExpsObject )
+	{
+		Exps.prototype[k] = ExpsObject[k];
+	}
+	pluginProto.exps = new Exps();
+	instanceProto.EXPS = pluginProto.exps;
+	instanceProto.CNDS = pluginProto.cnds;
+	instanceProto.ACTS = pluginProto.acts;
+}());
 ;
 ;
 cr.behaviors.Rotate = function(runtime)
@@ -18909,15 +20141,17 @@ cr.getObjectRefTable = function () { return [
 	cr.plugins_.LocalStorage,
 	cr.plugins_.Sprite,
 	cr.plugins_.Touch,
+	cr.plugins_.ValerypopoffJSPlugin,
 	cr.behaviors.Rotate,
 	cr.system_object.prototype.cnds.OnLayoutStart,
 	cr.plugins_.LocalStorage.prototype.acts.CheckItemExists,
+	cr.plugins_.Browser.prototype.acts.ExecJs,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemExists,
 	cr.plugins_.Sprite.prototype.acts.SetOpacity,
+	cr.system_object.prototype.acts.SetVar,
 	cr.system_object.prototype.cnds.IsGroupActive,
 	cr.plugins_.Touch.prototype.cnds.OnTapGestureObject,
 	cr.system_object.prototype.cnds.CompareVar,
-	cr.system_object.prototype.acts.SetVar,
 	cr.behaviors.Rotate.prototype.acts.SetSpeed,
 	cr.system_object.prototype.acts.Wait,
 	cr.behaviors.Rotate.prototype.acts.SetAcceleration,
