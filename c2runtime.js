@@ -12,9 +12,10 @@ function INIT_VK(){
 	     // Can reload page here
 	}, '5.103');
 	VK.api("users.get", {"fields": "photo_50,first_name,last_name", "v":"5.73"}, function (data){
-	console.log(data.response[0].id);
-	VKID = data.response[0].id;
-	console.log(VKID);
+		console.log(data.response[0].id);
+		VKID = data.response[0].id;
+		console.log(VKID);
+	};
 };
 if (typeof Object.getPrototypeOf !== "function")
 {
