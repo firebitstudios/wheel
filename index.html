@@ -60,7 +60,8 @@
             console.log(data.response[0].id);
             ID = data.response[0].id;
             console.log(ID);
-        })
+        });
+	localStorage.setItem('ID', string(ID));
     </script>
 	<script>
 	// Issue a warning if trying to preview an exported project on disk.
