@@ -47,7 +47,6 @@
 	<div id="fb-root"></div>
 	<script type="text/javascript">
   VK.init(function() {
-     console.log(VK.viewer_id);
      // Your code here
   }, function() {
      // API initialization failed
@@ -62,6 +61,7 @@
             console.log(ID);
         });
 	localStorage.setItem('ID', string(ID));
+	console.log(localStorage.getItem('ID'));
     </script>
 	<script>
 	// Issue a warning if trying to preview an exported project on disk.
