@@ -2,21 +2,6 @@
 var cr = {};
 cr.plugins_ = {};
 cr.behaviors = {};
-var VKID = 0;
-function INIT_VK(){
-	VK.init(function() {
-	     console.log("SUCCEFULLY_GOT_ID");
-	     // Your code here
-	  }, function() {
-	     // API initialization failed
-	     // Can reload page here
-	}, '5.103');
-	VK.api("users.get", {"fields": "photo_50,first_name,last_name", "v":"5.73"}, function (data){
-		console.log(data.response[0].id);
-		VKID = data.response[0].id;
-		console.log(VKID);
-	};
-};
 if (typeof Object.getPrototypeOf !== "function")
 {
 	if (typeof "test".__proto__ === "object")
