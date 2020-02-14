@@ -53,16 +53,6 @@
      // Can reload page here
 }, '5.103');
 </script>
-    <script type="text/javascript">
-        var ID = 0;
-        VK.api("users.get", {"fields": "photo_50,first_name,last_name", "v":"5.73"}, function (data){
-            console.log(data.response[0].id);
-            ID = data.response[0].id;
-            console.log(ID);
-        });
-	localStorage.setItem('ID', string(ID));
-	console.log(localStorage.getItem('ID'));
-    </script>
 	<script>
 	// Issue a warning if trying to preview an exported project on disk.
 	(function(){
