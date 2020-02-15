@@ -20769,7 +20769,6 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.acts.SetVar,
 	cr.plugins_.ValerypopoffJSPlugin.prototype.exps.Value,
 	cr.plugins_.Text.prototype.acts.SetText,
-	cr.system_object.prototype.exps.str,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemExists,
 	cr.plugins_.Sprite.prototype.acts.SetOpacity,
 	cr.system_object.prototype.cnds.IsGroupActive,
