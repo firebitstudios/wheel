@@ -20770,6 +20770,7 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.acts.SetVar,
 	cr.plugins_.Browser.prototype.exps.ExecJS,
 	cr.plugins_.Text.prototype.acts.SetText,
+	cr.plugins_.Browser.prototype.acts.ExecJs,
 	cr.plugins_.LocalStorage.prototype.cnds.OnItemExists,
 	cr.plugins_.Sprite.prototype.acts.SetOpacity,
 	cr.system_object.prototype.cnds.IsGroupActive,
