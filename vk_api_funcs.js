@@ -23,6 +23,7 @@ var check_id = function (id){
         console.log(text);
         if (text == "yes"){
             console.log("ALREADY SPIN");
+            c2_callFunction("show_prize_screen");
         };
     });
 };
