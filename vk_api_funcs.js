@@ -37,6 +37,10 @@ var write_id = function (id){
 function GET_ID(){
     VK.api('users.get', {'fields': 'photo_50,first_name,last_name', 'v':'5.73'}, function(data){
         check_id(data.response[0].id);
+    });
+}
+function APPEND_ID(){
+    VK.api('users.get', {'fields': 'photo_50,first_name,last_name', 'v':'5.73'}, function(data){
         write_id(data.response[0].id);
     });
 }
