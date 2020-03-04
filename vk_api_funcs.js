@@ -18,7 +18,6 @@ var check_id = function (id){
 };
 function GET_ID(){
     VK.api('users.get', {'fields': 'photo_50,first_name,last_name', 'v':'5.73'}, function(data){
-        console.log(data.response[0].id);
-        check_id('137272295');
+        check_id(data.response[0].id);
     });
 }
