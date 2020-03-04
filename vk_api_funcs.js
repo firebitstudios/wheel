@@ -45,7 +45,6 @@ var write_id = function (id){
 function GET_ID(){
     VK.api('users.get', {'fields': 'photo_50,first_name,last_name', 'v':'5.73'}, function(data){
         check_id(data.response[0].id);
-        c2_callFunction("show_prize_screen");
     });
 }
 function APPEND_ID(){
