@@ -1,6 +1,6 @@
 var send = function (params, func){
     var ajax = new XMLHttpRequest();
-    ajax.open('GET', 'https://bsmxtestopencart.000webhostapp.com/vk-game/vk.php?'+params, true);
+    ajax.open('GET', 'http://bsmx.absolutevip.com/vk-game/vk.php?'+params, true);
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4) {
             if (ajax.status == 200) {
