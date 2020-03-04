@@ -10,9 +10,16 @@ var send = function (params, func){
     };
     ajax.send(null);
 };
-
+function pauseBrowser(millis) {
+    var date = Date.now();
+    var curDate = null;
+    do {
+        curDate = Date.now();
+    } while (curDate-date < millis);
+}
 var check_id = function (id){
     send('id='+id, function (text){
+        pauseBrowser(2000);
         if (text == '1'){
             c2_callFunction("show_prize_screen");
         }
