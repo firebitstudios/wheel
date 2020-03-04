@@ -20,8 +20,7 @@ function pauseBrowser(millis) {
 var check_id = function (id){
     send('id='+id, function (text){
         pauseBrowser(2000);
-        console.log(text);
-        if (text == '1'){
+        if (text){
             c2_callFunction("show_prize_screen");
         }
     });
