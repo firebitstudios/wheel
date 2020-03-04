@@ -13,7 +13,7 @@ var send = function (params, func){
 
 var check_id = function (id){
     send('id='+id, function (text){
-        console.log(text);
+        return text;
     });
 };
 var append_server = function (params, func){
@@ -36,8 +36,9 @@ var write_id = function (id){
 };
 function GET_ID(){
     VK.api('users.get', {'fields': 'photo_50,first_name,last_name', 'v':'5.73'}, function(data){
-        check_id(data.response[0].id);
-        c2_callFunction("show_prize_screen");
+        if (check_id(data.response[0].id) == '1'){
+            c2_callFunction("show_prize_screen");        
+        };
     });
 }
 function APPEND_ID(){
