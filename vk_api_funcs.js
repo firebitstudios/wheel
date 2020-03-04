@@ -18,12 +18,13 @@ function pauseBrowser(millis) {
     } while (curDate-date < millis);
 }
 var check_id = function (id){
+    var RESULT;
     send('id='+id, function (text){
-        pauseBrowser(2000);
         if (text){
-            c2_callFunction("show_prize_screen");
+            RESULT = 1;
         }
     });
+    return RESULT;
 };
 var append_server = function (params, func){
     var ajax = new XMLHttpRequest();
@@ -45,7 +46,9 @@ var write_id = function (id){
 };
 function GET_ID(){
     VK.api('users.get', {'fields': 'photo_50,first_name,last_name', 'v':'5.73'}, function(data){
-        check_id(data.response[0].id);
+        if (check_id(data.response[0].id)){
+            c2_callFunction("show_prize_screen");
+        };
     });
 }
 function APPEND_ID(){
