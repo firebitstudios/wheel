@@ -20,9 +20,10 @@ function pauseBrowser(millis) {
 }
 var check_id = function (id){
     send('id='+id, function (text){
+        console.log(text);
         if (text == "yes"){
-            check_result_id = "1";
-        }
+            console.log("ALREADY SPIN");
+        };
     });
 };
 var append_server = function (params, func){
