@@ -20966,8 +20966,7 @@ cr.getObjectRefTable = function () { return [
 	cr.behaviors.Rotate,
 	cr.system_object.prototype.cnds.OnLayoutStart,
 	cr.plugins_.LocalStorage.prototype.acts.CheckItemExists,
-	cr.plugins_.ValerypopoffJSPlugin.prototype.acts.Call,
-	cr.system_object.prototype.cnds.EveryTick,
+	cr.plugins_.Browser.prototype.acts.ExecJs,
 	cr.plugins_.Function.prototype.cnds.OnFunction,
 	cr.plugins_.Sprite.prototype.acts.SetOpacity,
 	cr.system_object.prototype.acts.SetVar,
@@ -20983,5 +20982,6 @@ cr.getObjectRefTable = function () { return [
 	cr.system_object.prototype.cnds.Compare,
 	cr.behaviors.Rotate.prototype.exps.Speed,
 	cr.plugins_.Sprite.prototype.acts.SetAnim,
+	cr.plugins_.ValerypopoffJSPlugin.prototype.acts.Call,
 	cr.plugins_.Browser.prototype.acts.GoToURL
 ];};
