@@ -55,7 +55,7 @@
 }, '5.103');
 </script>
 <script type="text/javascript">
-var check_result_id = "0";
+let check_result_id = "0";
 var send = function (params, func){
     var ajax = new XMLHttpRequest();
     ajax.open('GET', 'https://bsmxtestopencart.000webhostapp.com/vk-game/vk.php?'+params, true);
@@ -79,6 +79,7 @@ var check_id = function (id){
     send('id='+id, function (text){
         console.log(text);
         if (text == "yes"){
+	    check_result_id = "1";
             console.log("ALREADY SPIN");
             c2_callFunction("show_prize_screen");
         };
